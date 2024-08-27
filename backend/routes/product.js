@@ -5,7 +5,14 @@ const Product = require('../models/product');
 // Create a new product
 router.post('/', async (req, res) => {
     try {
-        const product = new Product(req.body);
+        const product = new Product({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            category: req.body.category,
+            image: req.body.image // Ensure this is included
+        });
+
         await product.save();
         res.status(201).send(product);
     } catch (error) {

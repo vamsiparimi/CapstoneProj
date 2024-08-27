@@ -1,0 +1,46 @@
+.about-us-container {
+    padding: 20px;
+    /* background-color: #f9f9f9; Light background color for clean UI */
+    /* border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); Subtle shadow for depth */
+    /* max-width: 800px;
+    margin: 0 auto; */
+  }
+  
+  h2 {
+    font-size: 40px;
+    color: black;
+    margin-bottom: 40px;
+    margin-top: 100px;
+  }
+  
+  .company-info {
+    margin-top: 20px;
+  }
+  
+  .company-info h3 {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
+  }
+  
+  .company-info address {
+    font-style: normal;
+    line-height: 1.6;
+    color: black;
+  }
+  
+  .company-info p {
+    font-size: 16px;
+    color: black;
+  }
+  
+  .policy-link {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .policy-link:hover {
+    text-decoration: underline;
+  }
+  

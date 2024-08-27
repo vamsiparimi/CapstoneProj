@@ -24,6 +24,7 @@ export class ModifyProductsComponent implements OnInit {
       category: ['', Validators.required],
       image: [''] // Include image field
     });
+    
   }
 
   ngOnInit(): void {
@@ -67,7 +68,7 @@ export class ModifyProductsComponent implements OnInit {
         );
       }
     }
-  }
+  }  
 
   onEdit(product: any): void {
     this.isUpdating = true;
