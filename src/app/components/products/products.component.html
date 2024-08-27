@@ -1,0 +1,14 @@
+<div class="products-container">
+  <h2>Collections</h2>
+
+  <div *ngIf="products && products.length" class="products-list">
+      <div *ngFor="let product of products" class="product-item">
+          <img [src]="product.image" alt="{{ product.name }}" class="product-image">
+          <h4>{{ product.name }}</h4>
+          <p>{{ product.description }}</p>
+          <p>Price: {{ product.price | currency }}</p>
+          <p>Category: {{ product.category }}</p>
+          <button (click)="addToCart(product)">Add to Cart</button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="modify-products-container">
+    <h2>Product Management</h2>
+  
+    <!-- Form for adding or updating a product -->
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="productName">Product Name</label>
+        <input id="productName" formControlName="name" type="text" required />
+      </div>
+      <div>
+        <label for="productDescription">Description</label>
+        <textarea id="productDescription" formControlName="description" required></textarea>
+      </div>
+      <div>
+        <label for="productPrice">Price</label>
+        <input id="productPrice" formControlName="price" type="number" required />
+      </div>
+      <div>
+        <label for="productCategory">Category</label>
+        <input id="productCategory" formControlName="category" type="text" required />
+      </div>
+      <div>
+        <label for="productImage">Image URL</label>
+        <input id="productImage" formControlName="image" type="text" />
+      </div>
+      <button type="submit">{{ isUpdating ? 'Update' : 'Add' }} Product</button>
+    </form>
+  
+    <!-- List of existing products with Edit and Delete buttons -->
+    <div *ngIf="products && products.length" class="product-list">
+      <h3>Existing Products</h3>
+      <div *ngFor="let product of products" class="product-item">
+        <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}" class="product-image"/>
+        <h4>{{ product.name }}</h4>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price | currency }}</p>
+        <p>Category: {{ product.category }}</p>
+        <button (click)="onEdit(product)">Edit</button>
+        <button (click)="onDelete(product._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+  

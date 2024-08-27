@@ -1,0 +1,5 @@
+.product-image {
+    max-width: 100%; /* Ensure image fits within its container */
+    height: auto; /* Maintain aspect ratio */
+  }
+  

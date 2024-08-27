@@ -1,0 +1,36 @@
+<div class="checkout-container">
+  <h2>Shopping Cart</h2>
+
+  <div *ngIf="(cartItems$ | async) as cartItems; else noItems">
+    <div *ngIf="cartItems.length; else emptyCart" class="cart-list">
+      <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+        <div class="item-details">
+          <img [src]="item.image" alt="{{ item.name }}" class="item-image" *ngIf="item.image">
+          <div class="item-info">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+            <p>Price:  {{ item.price | currency }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+          </div>
+          <div class="item-actions">
+            <div class="quantity-controls">
+              <button (click)="updateQuantity(i, -1)">-</button>
+              <span>{{ item.quantity }}</span>
+              <button (click)="updateQuantity(i, 1)">+</button>
+            </div>
+            <button (click)="removeFromCart(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty!</p>
+    </ng-template>
+  </div>
+  <ng-template #noItems>
+    <p>Loading...</p>
+  </ng-template>
+
+  <h3>Total: $ {{ total$ | async }}</h3>
+  <button (click)="proceedToCheckout()">Check Out</button>
+</div>

@@ -1,0 +1,53 @@
+<div class="auth-container">
+  <div *ngIf="!isLoggedIn">
+    <div *ngIf="showLogin">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div>
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" formControlName="email" type="email">
+        </div>
+        <div>
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" formControlName="password" type="password">
+        </div>
+        <button type="submit" class="loginbutton">Login</button>
+        <p>Don't have an account? 
+          <button type="button" (click)="toggleForm()" class="link-button">Sign Up</button>
+        </p>
+      </form>
+    </div>
+
+    <div *ngIf="!showLogin">
+      <h2>Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div>
+          <label for="registerName">Username</label>
+          <input id="registerName" formControlName="username">
+        </div>
+        <div>
+          <label for="registerEmail">Email</label>
+          <input id="registerEmail" formControlName="email" type="email">
+        </div>
+        <div>
+          <label for="registerPassword">Password</label>
+          <input id="registerPassword" formControlName="password" type="password">
+        </div>
+        <button type="submit" class="loginbutton">Register</button>
+        <p>Already have an account? 
+          <button type="button" (click)="toggleForm()" class="link-button">Login</button>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <h2>Welcome, {{ isAdmin ? 'Admin' : user.username }}</h2>
+    <!-- <p>Your Order History:</p>
+    <ul>
+      <li *ngFor="let order of orderHistory">{{ order.details }}</li>
+    </ul>
+    <p>Current Order: {{ currentOrder.details }}</p> -->
+    <button type="button" (click)="logout()">Logout</button>
+  </div>
+</div>
