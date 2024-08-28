@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
   isLoggedIn: boolean = false;
   isAdmin = false;
   user: any = null;
-  // orderHistory: any[] = [];
-  // currentOrder: any = null;
+  alertVisible: boolean = false;
+  alertMessage: string = '';
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
@@ -39,9 +39,15 @@ export class RegisterComponent implements OnInit {
       this.isLoggedIn = true;
       this.isAdmin = this.authService.isAdmin();
       this.user = this.authService.getUser();
-      // this.orderHistory = this.authService.getOrderHistory();
-      // this.currentOrder = this.authService.getCurrentOrder();
     }
+  }
+
+  showAlert(message: string): void {
+    this.alertMessage = message;
+    this.alertVisible = true;
+    setTimeout(() => {
+      this.alertVisible = false;
+    }, 3000); // Alert disappears after 3 seconds
   }
 
   onLogin(): void {
@@ -50,24 +56,23 @@ export class RegisterComponent implements OnInit {
         (response: any) => {
           if (response) {
             console.log('User logged in:', response);
-            alert('Login successful!');
+            this.showAlert('Login successful!');
             this.authService.setAuthData(response);
             this.isLoggedIn = true;
             this.user = response.user;
-            // this.orderHistory = response.orderHistory;
-            // this.currentOrder = response.currentOrder;
           } else {
             console.error('Login failed. No response data.');
+            this.showAlert('Login failed. No response data.');
           }
         },
         (error: any) => {
           console.error('Login error:', error);
-          alert('Login failed. Please check your credentials.');
+          this.showAlert('Login failed. Please check your credentials.');
         }
       );
     } else {
       console.log('Login form is invalid');
-      alert('Please fill out all required fields correctly.');
+      this.showAlert('Please fill out all required fields correctly.');
     }
   }
 
@@ -77,20 +82,21 @@ export class RegisterComponent implements OnInit {
         (response: any) => {
           if (response) {
             console.log('User registered:', response);
-            alert('Registration successful!');
+            this.showAlert('Registration successful!');
             this.toggleForm();
           } else {
             console.error('Registration failed. No response data.');
+            this.showAlert('Registration failed. No response data.');
           }
         },
         (error: any) => {
           console.error('Registration error:', error);
-          alert('Registration failed. Please try again.');
+          this.showAlert('Registration failed. Please try again.');
         }
       );
     } else {
       console.log('Registration form is invalid');
-      alert('Please fill out all required fields correctly.');
+      this.showAlert('Please fill out all required fields correctly.');
     }
   }
 
@@ -103,9 +109,6 @@ export class RegisterComponent implements OnInit {
     this.isLoggedIn = false;
     this.isAdmin = false;
     this.user = null;
-    // this.orderHistory = [];
-    // this.currentOrder = null;
-    alert('Logged out successfully!');
+    this.showAlert('Logged out successfully!');
   }
-  
 }

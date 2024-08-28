@@ -3,15 +3,15 @@
     <div *ngIf="showLogin">
       <h2>Login</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <div>
+        <div class="input-group">
           <label for="loginEmail">Email</label>
           <input id="loginEmail" formControlName="email" type="email">
         </div>
-        <div>
+        <div class="input-group">
           <label for="loginPassword">Password</label>
           <input id="loginPassword" formControlName="password" type="password">
         </div>
-        <button type="submit" class="loginbutton">Login</button>
+        <button type="submit" class="auth-button">Login</button>
         <p>Don't have an account? 
           <button type="button" (click)="toggleForm()" class="link-button">Sign Up</button>
         </p>
@@ -21,19 +21,19 @@
     <div *ngIf="!showLogin">
       <h2>Register</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-        <div>
+        <div class="input-group">
           <label for="registerName">Username</label>
           <input id="registerName" formControlName="username">
         </div>
-        <div>
+        <div class="input-group">
           <label for="registerEmail">Email</label>
           <input id="registerEmail" formControlName="email" type="email">
         </div>
-        <div>
+        <div class="input-group">
           <label for="registerPassword">Password</label>
           <input id="registerPassword" formControlName="password" type="password">
         </div>
-        <button type="submit" class="loginbutton">Register</button>
+        <button type="submit" class="auth-button">Register</button>
         <p>Already have an account? 
           <button type="button" (click)="toggleForm()" class="link-button">Login</button>
         </p>
@@ -43,11 +43,12 @@
 
   <div *ngIf="isLoggedIn">
     <h2>Welcome, {{ isAdmin ? 'Admin' : user.username }}</h2>
-    <!-- <p>Your Order History:</p>
-    <ul>
-      <li *ngFor="let order of orderHistory">{{ order.details }}</li>
-    </ul>
-    <p>Current Order: {{ currentOrder.details }}</p> -->
-    <button type="button" (click)="logout()">Logout</button>
+    <button type="button" (click)="logout()" class="auth-button">Logout</button>
   </div>
 </div>
+
+  <!-- Alert -->
+<div class="alert" *ngIf="alertVisible">
+  {{ alertMessage }}
+</div>
+

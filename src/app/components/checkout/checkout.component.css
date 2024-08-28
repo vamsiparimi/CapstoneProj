@@ -4,20 +4,21 @@
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-}
-
-.checkout-container h2 {
+    position: relative; /* Ensure child elements are positioned correctly */
+  }
+  
+  .checkout-container h2 {
     font-size: 36px;
     margin-bottom: 20px;
-}
-
-.cart-list {
+  }
+  
+  .cart-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.cart-item {
+  }
+  
+  .cart-item {
     display: flex;
     align-items: center;
     padding: 20px;
@@ -25,95 +26,98 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border: 1px solid #e0e0e0;
-}
-
-.item-details {
+  }
+  
+  .item-details {
     display: flex;
     align-items: center;
     width: 100%;
-}
-
-.item-image {
+  }
+  
+  .item-image {
     width: 100px;
     height: 100px;
     object-fit: cover;
     margin-right: 20px;
-}
-
-.item-info {
+  }
+  
+  .item-info {
     flex: 1;
-}
-
-.item-info h4 {
+  }
+  
+  .item-info h4 {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
-}
-
-.item-info p {
+  }
+  
+  .item-info p {
     margin: 5px 0;
-}
-
-.item-actions {
+  }
+  
+  .item-actions {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.quantity-controls {
+  }
+  
+  .quantity-controls {
     display: flex;
     align-items: center;
-}
-
-.quantity-controls button {
+  }
+  
+  .quantity-controls button {
     padding: 5px 10px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     cursor: pointer;
     font-size: 16px;
-}
-
-.quantity-controls span {
+  }
+  
+  .quantity-controls span {
     margin: 0 10px;
     font-size: 16px;
-}
-
-.item-actions button {
+  }
+  
+  .item-actions button {
     background-color: black;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-}
-
-.item-actions button:hover {
+  }
+  
+  .item-actions button:hover {
     background-color: #d00;
-}
-
-.checkout-summary {
+  }
+  
+  .checkout-summary {
+    margin-left: auto; /* Pushes the box to the right within its container */
     padding: 20px;
-    background-color: #f5f5f5;
+    color: black;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
     text-align: right;
-}
-
-.checkout-summary h3 {
+  }
+  
+  .checkout-summary-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns the summary to the right */
+    margin-top: 20px; /* Adds some space above the summary */
+  }
+  
+  .checkout-summary h3 {
     font-size: 24px;
-    margin-bottom: 15px;
-}
-
-.checkout-summary p {
+    margin-bottom: 10px;
+  }
+  
+  .checkout-summary p {
     font-size: 18px;
-    margin: 10px 0;
-}
-
-.checkout-summary .total-price {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.checkout-summary button {
+    margin: 5px 0;
+  }
+  
+  .checkout-summary button {
     display: block;
     width: 100%;
     padding: 15px;
@@ -125,15 +129,18 @@
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.3s ease;
-}
-
-.checkout-summary button:hover {
+  }
+  
+  .checkout-summary button:hover {
     background-color: #333;
-}
-
-.emptyCart {
+  }
+  
+  .emptyCart {
     text-align: center;
     padding: 50px 0;
     font-size: 20px;
     color: #777;
-}
+  }
+  
+  
+  

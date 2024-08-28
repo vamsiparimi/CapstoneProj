@@ -23,8 +23,9 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {}
 
   removeFromCart(index: number): void {
-    this.cartService.removeFromCart(index); // Call removeFromCart method in CartService
-  }
+      this.cartService.removeFromCart(index); // Call removeFromCart method in CartService
+    }
+  
 
   proceedToCheckout(): void {
     console.log('Proceeding to checkout');
