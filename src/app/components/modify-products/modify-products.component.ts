@@ -55,7 +55,8 @@ export class ModifyProductsComponent implements OnInit {
             switchMap(() => this.showAlertMessage('Product updated successfully', 'success')),
             switchMap(() => this.loadProducts()), // Reload products after update
             catchError(error => this.showAlertMessage('Error updating product', 'error'))
-          ).subscribe(() => {
+          ).subscribe(products => {
+            this.products = products; // Update products
             this.productForm.reset(); // Reset form after successful update
             this.isUpdating = false;
             this.currentProductId = null;
@@ -67,7 +68,8 @@ export class ModifyProductsComponent implements OnInit {
             switchMap(() => this.showAlertMessage('Product added successfully', 'success')),
             switchMap(() => this.loadProducts()), // Reload products after adding
             catchError(error => this.showAlertMessage('Error adding product', 'error'))
-          ).subscribe(() => {
+          ).subscribe(products => {
+            this.products = products; // Update products
             this.productForm.reset(); // Reset form after successful addition
           });
         }
@@ -94,7 +96,9 @@ export class ModifyProductsComponent implements OnInit {
           switchMap(() => this.showAlertMessage('Product deleted successfully', 'success')),
           switchMap(() => this.loadProducts()), // Reload products after deletion
           catchError(error => this.showAlertMessage('Error deleting product', 'error'))
-        ).subscribe();
+        ).subscribe(products => {
+          this.products = products; // Update products
+        });
       }
     } else {
       this.showAlertMessage('Product ID is undefined', 'error');
