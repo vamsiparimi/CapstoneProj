@@ -6,9 +6,14 @@
           <img [src]="product.image" alt="{{ product.name }}" class="product-image">
           <h4>{{ product.name }}</h4>
           <p>{{ product.description }}</p>
-          <p>Price: {{ product.price | currency }}</p>
+          <p>Price: {{ product.price | currency: 'INR' }}</p>
           <p>Category: {{ product.category }}</p>
           <button (click)="addToCart(product)">Add to Cart</button>
       </div>
   </div>
+</div>
+
+<div *ngIf="showAlert" class="fade-out-alert">
+  <p>Product added to cart!</p>
+  <button (click)="showAlert = false">Close</button>
 </div>

@@ -1,0 +1,78 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .help-container {
+    width: 60%;
+    max-width: 800px;
+    text-align: left;
+    padding: 2rem;
+  }
+  
+  .help-container h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .help-container p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .help-container a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .help-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .form-group input, 
+  .form-group textarea {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    height: 150px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  

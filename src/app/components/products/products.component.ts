@@ -21,6 +21,7 @@ interface Product {
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  showAlert = false;
 
   constructor(private productService: ProductService, private cartService: CartService) {}
 
@@ -40,8 +41,11 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    console.log('Adding to cart:', product); // Debugging
     this.cartService.addToCart(product);
-    alert('Product added to cart!');
+    this.showAlert = true;
+
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000); // Alert will fade out after 3 seconds
   }
 }

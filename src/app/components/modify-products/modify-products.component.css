@@ -1,5 +1,150 @@
+.modify-products-container {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.product-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.submit-button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
 .product-image {
-    max-width: 100%; /* Ensure image fits within its container */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.product-details h4 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.edit-button, .delete-button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  width: 45%;
+  margin: 0 2.5%;
+}
+
+.edit-button:hover, .delete-button:hover {
+  background-color: black;
+}
+
+.fade-out-alert {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
+  background-color: #333; /* Default dark background */
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem; /* Smaller padding for compact size */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: opacity 0.5s ease-out, transform 0.3s ease-in-out; /* Smooth transitions */
+  opacity: 1; /* Ensure it's visible initially */
+  max-width: 90%; /* Responsive max width */
+  box-sizing: border-box; /* Include padding and borders in width */
+}
+
+
+
+.fade-out-alert.ng-hide {
+  opacity: 0;
+  transform: translateY(20px); /* Slight upward shift when hiding */
+}
+
+.fade-out-alert p {
+  margin: 0;
+  font-size: 1rem; /* Readable font size */
+}
+
+.fade-out-alert button {
+  background-color: #444; /* Dark button background */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px; /* Slightly rounded corners */
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-size: 0.9rem; /* Smaller font size */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.fade-out-alert button:hover {
+  background-color: #555; /* Lighter shade on hover */
+}

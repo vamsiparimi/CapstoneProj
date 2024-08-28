@@ -9,7 +9,7 @@
           <div class="item-info">
             <h4>{{ item.name }}</h4>
             <p>{{ item.description }}</p>
-            <p>Price:  {{ item.price | currency }}</p>
+            <p>Price:  {{ item.price | currency: 'INR' }}</p>
             <p>Quantity: {{ item.quantity }}</p>
           </div>
           <div class="item-actions">
@@ -31,6 +31,6 @@
     <p>Loading...</p>
   </ng-template>
 
-  <h3>Total: $ {{ total$ | async }}</h3>
+  <h3>Total: ₹ {{ total$ | async }}</h3>
   <button (click)="proceedToCheckout()">Check Out</button>
 </div>

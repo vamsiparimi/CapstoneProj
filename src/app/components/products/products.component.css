@@ -66,3 +66,46 @@ button {
 button:hover {
   background-color: black;
 }
+
+.fade-out-alert {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
+  background-color: black; /* Dark background for contrast */
+  color: white;
+  text-align: center;
+  padding: 0.5rem 5rem; /* Smaller padding for a compact size */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: opacity 0.5s ease-out, transform 0.3s ease-in-out; /* Smooth transitions */
+  opacity: 1; /* Ensure it's visible initially */
+  max-width: 90%; /* Responsive max width */
+  box-sizing: border-box; /* Ensure padding and borders are included in the width */
+}
+
+.fade-out-alert p {
+  margin: 0;
+  font-size: 1rem; /* Readable font size */
+  color: #fff;
+}
+
+.fade-out-alert button {
+  background-color: #444; /* Slightly lighter background for contrast */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px; /* Slightly rounded corners */
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-size: 0.9rem; /* Smaller font size */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.fade-out-alert button:hover {
+  background-color: #555; /* Lighter shade on hover */
+}
+
+.fade-out-alert.ng-hide {
+  opacity: 0;
+  transform: translateY(20px); /* Slight upward shift when hiding */
+}
