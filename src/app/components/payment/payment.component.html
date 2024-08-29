@@ -1,86 +1,137 @@
-<form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
-    <div class="payment-container">
-      <!-- Account Section -->
-      <h2 style="color: #777; font-size: 15px;">Account</h2>
-      <p style="font-size: 15px;">{{userEmail}}</p>
-    
-      <!-- Apply Coupon Codes Section -->
-      <h2>Apply Coupon Codes</h2>
-      <div class="form-group coupon-group">
-        <input formControlName="coupon" type="text" placeholder="Enter Discount Code" />
-        <button type="button" (click)="applyCoupon()">Apply</button>
-      </div>
-    
-      <!-- Delivery Section -->
-      <h2>Delivery</h2>
-      <div class="form-group">
-        <label for="country">Country/Region</label>
-        <select formControlName="country" id="country">
-          <option>India</option>
-          <option>Australia</option>
-          <option>USA</option>
-          <option>Canada</option>
-        </select>
-      </div>
-    
-      <div class="form-row">
-        <div class="form-group half-width">
-          <input formControlName="firstName" type="text" placeholder="First name" required />
+<div class="page-container">
+    <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+      <div class="payment-container">
+        <!-- Account Section -->
+        <h2 style="color: #777; font-size: 15px;">Account</h2>
+        <p style="font-size: 15px;">{{ userEmail }}</p>
+        <hr>
+  
+        <!-- Apply Coupon Codes Section -->
+        <h2>Apply Coupon Codes</h2>
+        <div class="form-group coupon-group">
+          <input formControlName="coupon" type="text" placeholder="Enter Discount Code" />
+          <button type="button" (click)="applyCoupon()">Apply</button>
         </div>
-        <div class="form-group half-width">
-          <input formControlName="lastName" type="text" placeholder="Last name" required />
+  
+        <!-- Delivery Section -->
+        <h2>Delivery</h2>
+        <div class="form-group">
+          <label for="country">Country/Region</label>
+          <select formControlName="country" id="country">
+            <option>India</option>
+            <option>Australia</option>
+            <option>USA</option>
+            <option>Canada</option>
+          </select>
         </div>
-      </div>
-      <div class="form-group">
-        <input formControlName="address" type="text" placeholder="Address" required />
-      </div>
-      <div class="form-row">
-        <div class="form-group half-width">
-          <input formControlName="city" type="text" placeholder="City" required />
-        </div>
-        <div class="form-group half-width">
-          <input formControlName="state" type="text" placeholder="State" required />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group half-width">
-          <input formControlName="pinCode" type="text" placeholder="PIN code" required />
-        </div>
-        <div class="form-group half-width">
-          <input formControlName="phone" type="text" placeholder="Phone" required />
-        </div>
-      </div>
-    
-      <!-- Payment Section -->
-      <h2>Payment</h2>
-      <div class="payment-section">
-        <div class="payment-option-box" [ngClass]="{'expanded': selectedPayment === 'razorpay'}">
-          <label>
-            <input type="radio" name="payment" value="razorpay" (change)="selectPayment('razorpay')" />
-            Razorpay Secure (UPI, Cards, Wallets, NetBanking)
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/dcdfe7e1d5626b0a1dda.svg" alt="UPI" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" alt="Visa" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/5e3b05b68f3d31b87e84.svg" alt="Master Card" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/fe904f1307590b94f8e6.svg" alt="Rupay" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/803a640da9d99f1de41c.svg" alt="Paytm" />
-          </label>
-          <div *ngIf="selectedPayment === 'razorpay'" class="payment-message">
-            After clicking “Pay now”, you will be redirected to Razorpay Secure (UPI, Cards, Wallets, NetBanking) to complete your purchase securely.
+  
+        <div class="form-row">
+          <div class="form-group half-width">
+            <input formControlName="firstName" type="text" placeholder="First name" required />
+          </div>
+          <div class="form-group half-width">
+            <input formControlName="lastName" type="text" placeholder="Last name" required />
           </div>
         </div>
-    
-        <div class="payment-option-box" [ngClass]="{'expanded': selectedPayment === 'cod'}">
-          <label>
-            <input type="radio" name="payment" value="cod" (change)="selectPayment('cod')" />
-            Cash on Delivery (COD)
-          </label>
-          <div *ngIf="selectedPayment === 'cod'" class="payment-message">
-            Cash on delivery
+        <div class="form-group">
+          <input formControlName="address" type="text" placeholder="Address" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group half-width">
+            <input formControlName="city" type="text" placeholder="City" required />
+          </div>
+          <div class="form-group half-width">
+            <input formControlName="state" type="text" placeholder="State" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group half-width">
+            <input formControlName="pinCode" type="text" placeholder="PIN code" required />
+          </div>
+          <div class="form-group half-width">
+            <input formControlName="phone" type="text" placeholder="Phone" required />
+          </div>
+        </div>
+  
+        <!-- Payment Section -->
+        <h2>Payment</h2>
+        <div class="payment-section">
+          <div class="payment-option-box" [ngClass]="{'expanded': selectedPayment === 'razorpay'}">
+            <label>
+              <input type="radio" name="payment" value="razorpay" (change)="selectPayment('razorpay')" />
+              Razorpay Secure (UPI, Cards, Wallets, NetBanking)
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/dcdfe7e1d5626b0a1dda.svg" alt="UPI" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" alt="Visa" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/5e3b05b68f3d31b87e84.svg" alt="Master Card" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/fe904f1307590b94f8e6.svg" alt="Rupay" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/803a640da9d99f1de41c.svg" alt="Paytm" />
+            </label>
+            <div *ngIf="selectedPayment === 'razorpay'" class="payment-message">
+              After clicking “Pay now”, you will be redirected to Razorpay Secure (UPI, Cards, Wallets, NetBanking) to complete your purchase securely.
+            </div>
+          </div>
+  
+          <div class="payment-option-box" [ngClass]="{'expanded': selectedPayment === 'cod'}">
+            <label>
+              <input type="radio" name="payment" value="cod" (change)="selectPayment('cod')" />
+              Cash on Delivery (COD)
+            </label>
+            <div *ngIf="selectedPayment === 'cod'" class="payment-message">
+              Cash on delivery
+            </div>
+          </div>
+        </div>
+  
+        <button type="submit" class="pay-now-button">Pay now</button>
+      </div>
+    </form>
+  
+    <!-- Cart Summary Section -->
+    <div class="cart-summary-container">
+      <h2>Cart Summary</h2>
+      <div *ngIf="cartItems$ | async as cartItems; else noItems">
+        <div *ngIf="cartItems.length; else emptyCart" class="cart-summary">
+          <div *ngFor="let item of cartItems" class="cart-item">
+            <img [src]="item.image" alt="{{ item.name }}" class="item-image" *ngIf="item.image">
+            <div class="item-info">
+              <div class="item-name">
+                <h4>{{ item.name }}</h4>
+              </div>
+              <div class="item-price">
+                <p>{{ item.price | currency: 'INR' }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    
-      <button type="submit" class="pay-now-button">Pay now</button>
+      <ng-template #emptyCart>
+        <p>Your cart is empty!</p>
+      </ng-template>
+      <ng-template #noItems>
+        <p>Loading...</p>
+      </ng-template>
+  
+      <hr>
+  
+      <div class="cart-price">
+        <div class="cart-subtotal">
+          <div class="price-row">
+            <p class="label">Subtotal:</p>
+            <p class="value">{{ (subtotal$ | async) | currency: 'INR' }}</p>
+          </div>
+          <div class="price-row">
+            <p class="label">Shipping:</p>
+            <p class="value">+{{ shippingCharge | currency: 'INR' }}</p>
+          </div>
+        </div>
+        <div class="cart-total">
+          <div class="price-row">
+            <p class="label"><b>Total:</b></p>
+            <p class="value"><b>{{ (total$ | async) | currency: 'INR' }}</b></p>
+          </div>
+        </div>
+      </div>
+      
     </div>
-  </form>
+  </div>
   
