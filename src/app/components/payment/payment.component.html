@@ -91,17 +91,20 @@
       <h2>Cart Summary</h2>
       <div *ngIf="cartItems$ | async as cartItems; else noItems">
         <div *ngIf="cartItems.length; else emptyCart" class="cart-summary">
-          <div *ngFor="let item of cartItems" class="cart-item">
-            <img [src]="item.image" alt="{{ item.name }}" class="item-image" *ngIf="item.image">
-            <div class="item-info">
-              <div class="item-name">
-                <h4>{{ item.name }}</h4>
-              </div>
-              <div class="item-price">
-                <p>{{ item.price | currency: 'INR' }}</p>
-              </div>
-            </div>
-          </div>
+            <div *ngFor="let item of cartItems" class="cart-item">
+                <div class="item-image-container">
+                  <img [src]="item.image" alt="{{ item.name }}" class="item-image" *ngIf="item.image">
+                  <div class="quantity-badge">{{ item.quantity }}</div> <!-- Quantity Badge -->
+                </div>
+                <div class="item-info">
+                  <div class="item-name">
+                    <h4>{{ item.name }}</h4>
+                  </div>
+                  <div class="item-price">
+                    <p>{{ item.price | currency: 'INR' }}</p>
+                  </div>
+                </div>
+              </div>              
         </div>
       </div>
       <ng-template #emptyCart>
