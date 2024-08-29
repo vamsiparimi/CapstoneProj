@@ -1,13 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json()); // Replaces bodyParser.json()
 
 // MongoDB Atlas connection
 const mongoURI = 'mongodb+srv://vamsiasce:dnVJxMU8kzpi2tNi@cluster0.cpdoa.mongodb.net/productManagement?retryWrites=true&w=majority';
@@ -21,15 +20,17 @@ mongoose.connect(mongoURI, {
 
 // Routes
 const authRoutes = require('./routes/auth');
-const productRoutes = require('./routes/product'); // Import product routes
+const productRoutes = require('./routes/product');
+const orderRoutes = require('./routes/orders');
 
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes); // Use product routes
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something went wrong!');
+    res.status(err.status || 500).send({ error: err.message || 'Something went wrong!' });
 });
 
 // Server Initialization

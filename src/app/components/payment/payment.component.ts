@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { CartService } from '../../services/cart.service'; // Import CartService
+import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -25,7 +26,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private cartService: CartService // Inject CartService
+    private cartService: CartService,
+    private orderService: OrderService // Inject OrderService
   ) {
     this.paymentForm = this.fb.group({
       username: ['', Validators.required],
@@ -55,6 +57,7 @@ export class PaymentComponent implements OnInit {
     const user = this.authService.getUser();
     if (user && user.email) {
       this.userEmail = user.email;
+      this.paymentForm.patchValue({ username: this.userEmail });
     }
   }
 
@@ -72,8 +75,32 @@ export class PaymentComponent implements OnInit {
   submitPayment(): void {
     if (this.paymentForm.valid) {
       const paymentDetails = this.paymentForm.value;
-      console.log('Payment Details:', paymentDetails);
-      // Handle payment submission logic here
+
+      // Collect cart items
+      this.cartItems$.subscribe(cartItems => {
+        const orderDetails = {
+          products: cartItems,
+          totalQuantity: cartItems.reduce((sum, item) => sum + item.quantity, 0),
+          totalPrice: paymentDetails.totalPrice,
+          name: `${paymentDetails.firstName} ${paymentDetails.lastName}`,
+          email: this.userEmail,
+          address: `${paymentDetails.address}, ${paymentDetails.city}, ${paymentDetails.state}, ${paymentDetails.pinCode}`,
+          contactNumber: paymentDetails.phone,
+          dateOfOrder: new Date(),
+          paymentMethod: paymentDetails.paymentMethod
+        };
+
+        this.orderService.saveOrder(orderDetails).subscribe(
+          response => {
+            console.log('Order saved successfully:', response);
+            // Handle successful order saving, e.g., redirect to a confirmation page
+          },
+          error => {
+            console.error('Error saving order:', error);
+            // Handle error
+          }
+        );
+      });
     } else {
       console.log('Form is invalid');
     }
