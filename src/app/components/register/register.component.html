@@ -44,11 +44,32 @@
   <div *ngIf="isLoggedIn">
     <h2>Welcome, {{ isAdmin ? 'Admin' : user.username }}</h2>
     <button type="button" (click)="logout()" class="auth-button">Logout</button>
+
+    <!-- My Orders Section -->
+    <div>
+      <button type="button" (click)="toggleOrders()" class="auth-button">
+        {{ showOrders ? 'Hide Orders' : 'My Orders' }}
+      </button>
+      <div *ngIf="showOrders" class="orders-section">
+        <h3>Your Orders</h3>
+        <div *ngFor="let order of orders" class="order">
+          <h4>Order ID: {{ order._id }}</h4>
+          <ul>
+            <li *ngFor="let product of order.products">
+              <div class="order-details">
+                <p><span>Product Name:</span> {{ product.name }}</p>
+                <p><span>Quantity:</span> {{ product.quantity }}</p>
+                <p><span>Price:</span> {{ product.price | currency }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-  <!-- Alert -->
+<!-- Alert -->
 <div class="alert" *ngIf="alertVisible">
   {{ alertMessage }}
 </div>
-

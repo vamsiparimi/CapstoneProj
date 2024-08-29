@@ -96,3 +96,62 @@ p {
 .link-button:hover {
   color: #FF6000;
 }
+
+/* My Orders Section */
+.orders-section {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.orders-section h3 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+}
+
+.order {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.order h4 {
+  margin-top: 0;
+  font-size: 20px;
+  color: black;
+}
+
+.order ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.order li:last-child {
+  border-bottom: none;
+}
+
+.order-details {
+  padding: 10px;
+}
+
+.order-details p {
+  margin: 5px 0;
+}
+
+.order-details span {
+  font-weight: bold;
+}
+
+

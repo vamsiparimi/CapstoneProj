@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { OrderService } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -19,8 +20,14 @@ export class RegisterComponent implements OnInit {
   user: any = null;
   alertVisible: boolean = false;
   alertMessage: string = '';
+  showOrders: boolean = false;
+  orders: any[] = []; // Array to hold user orders
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private orderService: OrderService // Inject OrderService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -39,6 +46,7 @@ export class RegisterComponent implements OnInit {
       this.isLoggedIn = true;
       this.isAdmin = this.authService.isAdmin();
       this.user = this.authService.getUser();
+      this.loadUserOrders(); // Load user orders on initialization
     }
   }
 
@@ -60,6 +68,7 @@ export class RegisterComponent implements OnInit {
             this.authService.setAuthData(response);
             this.isLoggedIn = true;
             this.user = response.user;
+            this.loadUserOrders(); // Load user orders after login
           } else {
             console.error('Login failed. No response data.');
             this.showAlert('Login failed. No response data.');
@@ -109,6 +118,30 @@ export class RegisterComponent implements OnInit {
     this.isLoggedIn = false;
     this.isAdmin = false;
     this.user = null;
+    this.showOrders = false; // Hide orders section on logout
     this.showAlert('Logged out successfully!');
+  }
+
+  toggleOrders(): void {
+    this.showOrders = !this.showOrders;
+  }
+
+  loadUserOrders(): void {
+    if (this.user) {
+      const userEmail = encodeURIComponent(this.user.email);
+      this.orderService.getUserOrders(userEmail).subscribe(
+        (response: any) => {
+          console.log('Fetched orders:', response);
+          this.orders = response.orders || []; // Ensure orders is an array
+        },
+        (error: any) => {
+          console.error('Error fetching orders:', error);
+          this.showAlert('Failed to load orders. Please try again later.');
+        }
+      );
+    } else {
+      console.error('User not found');
+      this.showAlert('User not found. Please log in again.');
+    }
   }
 }

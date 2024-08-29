@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Order = require('../models/orders'); // Import the Order model
+const Order = require('../models/orders');
 
 // Create a new order
 router.post('/', async (req, res) => {
@@ -9,9 +9,21 @@ router.post('/', async (req, res) => {
         await order.save();
         res.status(201).send(order);
     } catch (error) {
-        console.error('Error creating order:', error); // Log error for debugging
+        console.error('Error creating order:', error);
         res.status(400).send({ error: 'Failed to create order' });
     }
 });
+
+// Get orders by user email
+router.get('/user/:email', async (req, res) => {
+    try {
+        const orders = await Order.find({ email: req.params.email });
+        res.status(200).send({ orders });
+    } catch (error) {
+        console.error('Error retrieving orders:', error);
+        res.status(500).send({ error: 'Failed to retrieve orders' });
+    }
+});
+
 
 module.exports = router;
