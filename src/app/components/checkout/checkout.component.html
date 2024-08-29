@@ -33,7 +33,7 @@
 
   <div class="checkout-summary">
     <h3>Total Price: ₹ {{ total$ | async }}</h3>
-    <p>Total Products: {{ (cartItems$ | async)?.length }}</p>
+    <p>Taxes and shipping calculated at checkout</p>
     <button (click)="proceedToCheckout()">Check Out</button>
   </div>
 </div>

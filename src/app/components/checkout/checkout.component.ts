@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -15,7 +16,11 @@ export class CheckoutComponent implements OnInit {
   cartItems$: Observable<any[]>; // Use Observable for cart items
   total$: Observable<number>; // Use Observable for total price
 
-  constructor(private cartService: CartService, private currencyPipe: CurrencyPipe) {
+  constructor(
+    private cartService: CartService, 
+    private currencyPipe: CurrencyPipe,
+    private router: Router
+  ) {
     this.cartItems$ = this.cartService.getCartItems(); // Initialize cartItems$ with observable
     this.total$ = this.cartService.getTotal(); // Initialize total$ with observable
   }
@@ -28,6 +33,7 @@ export class CheckoutComponent implements OnInit {
   
 
   proceedToCheckout(): void {
+    this.router.navigate(['/payment']);
     console.log('Proceeding to checkout');
   }
 
