@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ModifyProductsComponent } from './components/modify-products/modify-products.component';
@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'modify-products', component: ModifyProductsComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
