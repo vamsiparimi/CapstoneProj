@@ -16,18 +16,19 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   showLogin: boolean = true;
   isLoggedIn: boolean = false;
-  isAdmin = false;
+  isAdmin: boolean = false;
   user: any = null;
   alertVisible: boolean = false;
   alertMessage: string = '';
   showOrders: boolean = false;
-  orders: any[] = []; // Array to hold user orders
+  orders: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private orderService: OrderService // Inject OrderService
+    private orderService: OrderService
   ) {
+    // Initialize the login and register forms
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -41,12 +42,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Initializing RegisterComponent');
+    // Check if the user is logged in and load user information
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.isAdmin = this.authService.isAdmin();
       this.user = this.authService.getUser();
-      this.loadUserOrders(); // Load user orders on initialization
+      this.loadUserOrders();
     }
   }
 
@@ -55,7 +56,7 @@ export class RegisterComponent implements OnInit {
     this.alertVisible = true;
     setTimeout(() => {
       this.alertVisible = false;
-    }, 3000); // Alert disappears after 3 seconds
+    }, 3000);
   }
 
   onLogin(): void {
@@ -63,24 +64,21 @@ export class RegisterComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe(
         (response: any) => {
           if (response) {
-            console.log('User logged in:', response);
             this.showAlert('Login successful!');
             this.authService.setAuthData(response);
             this.isLoggedIn = true;
+            this.isAdmin = this.authService.isAdmin();
             this.user = response.user;
-            this.loadUserOrders(); // Load user orders after login
+            this.loadUserOrders();
           } else {
-            console.error('Login failed. No response data.');
             this.showAlert('Login failed. No response data.');
           }
         },
         (error: any) => {
-          console.error('Login error:', error);
           this.showAlert('Login failed. Please check your credentials.');
         }
       );
     } else {
-      console.log('Login form is invalid');
       this.showAlert('Please fill out all required fields correctly.');
     }
   }
@@ -90,21 +88,17 @@ export class RegisterComponent implements OnInit {
       this.authService.register(this.registerForm.value).subscribe(
         (response: any) => {
           if (response) {
-            console.log('User registered:', response);
             this.showAlert('Registration successful!');
             this.toggleForm();
           } else {
-            console.error('Registration failed. No response data.');
             this.showAlert('Registration failed. No response data.');
           }
         },
         (error: any) => {
-          console.error('Registration error:', error);
           this.showAlert('Registration failed. Please try again.');
         }
       );
     } else {
-      console.log('Registration form is invalid');
       this.showAlert('Please fill out all required fields correctly.');
     }
   }
@@ -118,7 +112,7 @@ export class RegisterComponent implements OnInit {
     this.isLoggedIn = false;
     this.isAdmin = false;
     this.user = null;
-    this.showOrders = false; // Hide orders section on logout
+    this.showOrders = false;
     this.showAlert('Logged out successfully!');
   }
 
@@ -127,11 +121,22 @@ export class RegisterComponent implements OnInit {
   }
 
   loadUserOrders(): void {
-    if (this.user) {
+    if (this.isAdmin) {
+      this.orderService.getAllOrders().subscribe(
+        (response: any) => {
+          console.log('Fetched all orders:', response);
+          this.orders = response.orders || []; // Ensure orders is an array
+        },
+        (error: any) => {
+          console.error('Error fetching all orders:', error);
+          this.showAlert('Failed to load orders. Please try again later.');
+        }
+      );
+    } else if (this.user) {
       const userEmail = encodeURIComponent(this.user.email);
       this.orderService.getUserOrders(userEmail).subscribe(
         (response: any) => {
-          console.log('Fetched orders:', response);
+          console.log('Fetched user orders:', response);
           this.orders = response.orders || []; // Ensure orders is an array
         },
         (error: any) => {

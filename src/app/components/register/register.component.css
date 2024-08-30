@@ -121,6 +121,15 @@ p {
   border-radius: 10px;
 }
 
+.user-details {
+  margin-bottom: 15px;
+}
+
+.order-details p,
+.user-details p {
+  margin: 5px 0;
+}
+
 .order h4 {
   margin-top: 0;
   font-size: 20px;

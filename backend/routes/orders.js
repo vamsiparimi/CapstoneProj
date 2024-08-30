@@ -25,5 +25,16 @@ router.get('/user/:email', async (req, res) => {
     }
 });
 
+// Get all orders (for admin)
+router.get('/all', async (req, res) => {
+    try {
+        const orders = await Order.find(); // Retrieve all orders
+        res.status(200).send({ orders });
+    } catch (error) {
+        console.error('Error retrieving all orders:', error);
+        res.status(500).send({ error: 'Failed to retrieve all orders' });
+    }
+});
+
 
 module.exports = router;
