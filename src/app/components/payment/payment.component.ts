@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/orders.service';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -18,16 +19,18 @@ export class PaymentComponent implements OnInit {
   paymentForm: FormGroup;
   selectedPayment: string | null = null;
   userEmail: string = '';
-  cartItems$: Observable<any[]>; // Replace 'any' with the actual type if possible
+  cartItems$: Observable<any[]>;
   subtotal$: Observable<number>;
   total$: Observable<number>;
-  shippingCharge: number = 99; // Define shippingCharge here
+  shippingCharge: number = 99;
+  showAlert: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private cartService: CartService,
-    private orderService: OrderService // Inject OrderService
+    private orderService: OrderService,
+    private router: Router
   ) {
     this.paymentForm = this.fb.group({
       username: ['', Validators.required],
@@ -43,13 +46,12 @@ export class PaymentComponent implements OnInit {
       paymentMethod: ['', Validators.required],
     });
 
-    // Initialize cartItems$ and subtotal$
     this.cartItems$ = this.cartService.getCartItems();
     this.subtotal$ = this.cartItems$.pipe(
       map(items => items.reduce((sum, item) => sum + (item.price * item.quantity), 0))
     );
     this.total$ = this.subtotal$.pipe(
-      map(subtotal => subtotal + this.shippingCharge) // Use shippingCharge here
+      map(subtotal => subtotal + this.shippingCharge)
     );
   }
 
@@ -76,7 +78,6 @@ export class PaymentComponent implements OnInit {
     if (this.paymentForm.valid) {
       const paymentDetails = this.paymentForm.value;
 
-      // Collect cart items
       this.cartItems$.subscribe(cartItems => {
         const orderDetails = {
           products: cartItems,
@@ -93,7 +94,10 @@ export class PaymentComponent implements OnInit {
         this.orderService.saveOrder(orderDetails).subscribe(
           response => {
             console.log('Order saved successfully:', response);
-            // Handle successful order saving, e.g., redirect to a confirmation page
+            this.showAlert = true;
+            setTimeout(() => {
+              this.router.navigate(['/products']);
+            }, 10000); // Delay to allow alert to be seen
           },
           error => {
             console.error('Error saving order:', error);
@@ -104,5 +108,10 @@ export class PaymentComponent implements OnInit {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  hideAlert(): void {
+    this.showAlert = false;
+    this.router.navigate(['/products']);
   }
 }

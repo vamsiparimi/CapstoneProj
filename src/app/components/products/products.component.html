@@ -1,8 +1,17 @@
 <div class="products-container">
   <h2>Collections</h2>
 
-  <div *ngIf="products && products.length" class="products-list">
-      <div *ngFor="let product of products" class="product-item">
+  <!-- Category Filter -->
+  <div class="filter-container" style="margin-bottom: 50px; margin-left: -900px;">
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter" [(ngModel)]="selectedCategory" (change)="filterProductsByCategory()">
+      <option value="">All Categories</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="filteredProducts && filteredProducts.length" class="products-list">
+      <div *ngFor="let product of filteredProducts" class="product-item">
           <img [src]="product.image" alt="{{ product.name }}" class="product-image">
           <h4>{{ product.name }}</h4>
           <p>{{ product.description }}</p>

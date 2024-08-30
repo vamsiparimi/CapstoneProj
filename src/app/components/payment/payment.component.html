@@ -136,5 +136,14 @@
       </div>
       
     </div>
+
+    <!-- Alert Section -->
+  <div *ngIf="showAlert" class="alert-overlay">
+    <div class="alert-box">
+      <div class="alert-icon">✔️</div>
+      <div class="alert-message">Order placed. Thank you!</div>
+      <button class="alert-button" (click)="hideAlert()">OK</button>
+    </div>
   </div>
+</div>
   

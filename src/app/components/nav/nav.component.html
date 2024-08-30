@@ -9,14 +9,18 @@
     <li *ngIf="isAdmin">
       <a routerLink="/modify-products" routerLinkActive="active">Modify Products</a>
     </li>
-    <li><a routerLink="/aboutus" routerLinkActive="active">About Us</a></li>
-    <li><a routerLink="/help" routerLinkActive="active">Help</a></li>
+    <li *ngIf="!isAdmin">
+      <a routerLink="/aboutus" routerLinkActive="active">About Us</a>
+    </li>
+    <li *ngIf="!isAdmin">
+      <a routerLink="/help" routerLinkActive="active">Help</a>
+    </li>
     <li class="login">
       <a routerLink="/login" routerLinkActive="active">
         <img src="assets/images/login.png" alt="Login" class="logo-image">
       </a>
     </li>
-    <li class="cart">
+    <li class="cart" *ngIf="!isAdmin">
       <a routerLink="/checkout">
         <img src="assets/images/cart.png" alt="Cart" class="cart-image">
       </a>

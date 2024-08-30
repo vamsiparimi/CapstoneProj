@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
-import { NgIf, NgFor, CurrencyPipe } from '@angular/common'; 
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Product {
-  _id?: string; // Optional
+  _id?: string;
   image?: string;
   name: string;
   description: string;
@@ -17,10 +18,13 @@ interface Product {
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
   standalone: true,
-  imports: [NgIf, NgFor, CurrencyPipe]
+  imports: [NgIf, NgFor, CurrencyPipe, FormsModule]
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  categories: string[] = [];
+  selectedCategory = '';
   showAlert = false;
 
   constructor(private productService: ProductService, private cartService: CartService) {}
@@ -33,11 +37,25 @@ export class ProductsComponent implements OnInit {
     this.productService.getAllProducts().subscribe({
       next: (data: Product[]) => {
         this.products = data;
+        this.filteredProducts = data;
+        this.extractCategories();
       },
       error: (error: any) => {
         console.error('Error loading products:', error);
       }
     });
+  }
+
+  extractCategories(): void {
+    this.categories = [...new Set(this.products.map(product => product.category))];
+  }
+
+  filterProductsByCategory(): void {
+    if (this.selectedCategory) {
+      this.filteredProducts = this.products.filter(product => product.category === this.selectedCategory);
+    } else {
+      this.filteredProducts = this.products;
+    }
   }
 
   addToCart(product: Product): void {
@@ -46,6 +64,6 @@ export class ProductsComponent implements OnInit {
 
     setTimeout(() => {
       this.showAlert = false;
-    }, 3000); // Alert will fade out after 3 seconds
+    }, 3000);
   }
 }
