@@ -111,3 +111,79 @@ button:hover {
   opacity: 0;
   transform: translateY(20px); /* Slight upward shift when hiding */
 }
+
+.filter-container {
+  color: #fff; /* White text for contrast */
+  padding: 5px; /* Padding for consistent spacing */
+}
+
+.filter-container select {
+  background-color: black; /* Slightly lighter black background for the select dropdown */
+  border: 1px solid #333; /* Border color to distinguish the select dropdown */
+  border-radius: 5px; /* Rounded corners for consistency */
+  padding: 5px; /* Padding for the dropdown */
+  width: 10%; /* Full width to fit within the filter container */
+  color: #fff;
+}
+
+
+/* Base styles for mobile and smaller screens */
+@media (max-width: 768px) {
+  .products-container {
+    padding: 10px; /* Reduced padding for a more compact container */
+  }
+
+  .products-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Set to 2 columns on mobile */
+    gap: 20px; /* Reduced gap between items */
+  }
+
+  .product-item {
+    width: 100%; /* Full width for each product item on mobile */
+    max-width: 100%; /* Prevents items from exceeding the container width */
+    height: auto; /* Height adjusts based on content */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    padding: 10px; /* Reduced padding for a more compact look */
+  }
+
+  .product-image {
+    width: 70%; /* Ensure image takes full width of the product item */
+    height: auto; /* Height adjusts based on the image aspect ratio */
+    max-height: 150px; /* Set a max height to keep images smaller */
+    object-fit: cover; /* Cover ensures images fill the container without distortion */
+  }
+
+  h4, p {
+    font-size: 13px; /* Smaller font size for better fit on mobile screens */
+    margin: 5px 0; /* Reduced margin for a more compact appearance */
+  }
+
+  button {
+    padding: 8px 16px; /* Smaller padding for a compact button */
+  }
+
+  .fade-out-alert {
+    bottom: 10px; /* Adjusted distance from the bottom for better visibility on smaller screens */
+    right: 10px; /* Adjusted distance from the right */
+    padding: 0.5rem 1rem; /* Reduced padding for a compact size on mobile */
+  }
+
+  .filter-container {
+    color: #fff; /* White text for contrast */
+    padding: 5px; /* Padding for consistent spacing */
+  }
+  
+  .filter-container select {
+    background-color: black; /* Slightly lighter black background for the select dropdown */
+    border: 1px solid #333; /* Border color to distinguish the select dropdown */
+    border-radius: 5px; /* Rounded corners for consistency */
+    padding: 7px; /* Padding for the dropdown */
+    width: 23%; /* Full width to fit within the filter container */
+    color: #fff;
+  }
+
+  .filter-container select option{
+    font-size: 9px;
+  }
+}

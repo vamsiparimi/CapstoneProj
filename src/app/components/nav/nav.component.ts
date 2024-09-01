@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class NavComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
+  isMenuOpen = false;
   private subscriptions: Subscription = new Subscription();
 
   constructor(public authService: AuthService, private cdr: ChangeDetectorRef) {}
@@ -35,5 +36,13 @@ export class NavComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }

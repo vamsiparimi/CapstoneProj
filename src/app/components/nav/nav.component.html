@@ -1,29 +1,34 @@
 <nav class="navbar">
-  <ul>
-    <li class="logo">
-      <a routerLink="/home">
-        <img src="./assets/images/logo.png" alt="Logo" class="logo-image">
-      </a>
-    </li>
-    <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
-    <li *ngIf="isAdmin">
-      <a routerLink="/modify-products" routerLinkActive="active">Modify Products</a>
-    </li>
-    <li *ngIf="!isAdmin">
-      <a routerLink="/aboutus" routerLinkActive="active">About Us</a>
-    </li>
-    <li *ngIf="!isAdmin">
-      <a routerLink="/help" routerLinkActive="active">Help</a>
-    </li>
-    <li class="login">
-      <a routerLink="/login" routerLinkActive="active">
-        <img src="assets/images/login.png" alt="Login" class="logo-image">
-      </a>
-    </li>
-    <li class="cart" *ngIf="!isAdmin">
-      <a routerLink="/checkout">
-        <img src="assets/images/cart.png" alt="Cart" class="cart-image">
-      </a>
-    </li>
-  </ul>
+  <button class="hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="logo">
+    <a routerLink="/home" (click)="closeMenu()">
+      <img src="./assets/images/logo.png" alt="Logo">
+    </a>
+  </div>
+  <div class="nav-links" [class.active]="isMenuOpen">
+    <ul>
+      <li><a routerLink="/products" routerLinkActive="active" (click)="closeMenu()">Products</a></li>
+      <li *ngIf="isAdmin">
+        <a routerLink="/modify-products" routerLinkActive="active" (click)="closeMenu()">Modify Products</a>
+      </li>
+      <li *ngIf="!isAdmin">
+        <a routerLink="/aboutus" routerLinkActive="active" (click)="closeMenu()">About Us</a>
+      </li>
+      <li *ngIf="!isAdmin">
+        <a routerLink="/help" routerLinkActive="active" (click)="closeMenu()">Help</a>
+      </li>
+    </ul>
+    <div class="login">
+      <a routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Account</a>
+    </div>
+  </div>
+  <div *ngIf="!isAdmin" class="cart">
+    <a routerLink="/checkout" (click)="closeMenu()">
+      <img src="assets/images/cart.png" alt="Cart">
+    </a>
+  </div>
 </nav>
