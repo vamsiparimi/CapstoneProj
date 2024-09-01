@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { of } from 'rxjs'; // Import 'of' to create observable values
+import { of } from 'rxjs'; 
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -31,15 +31,15 @@ describe('AuthGuard', () => {
   });
 
   it('should return true if the user is logged in', () => {
-    authService.isLoggedIn.and.returnValue(true); // Simulate that the user is logged in
+    authService.isLoggedIn.and.returnValue(true); 
     const result = guard.canActivate();
-    expect(result).toBeTrue(); // The guard should allow activation
+    expect(result).toBeTrue(); 
   });
 
   it('should redirect to login if the user is not logged in', () => {
-    authService.isLoggedIn.and.returnValue(false); // Simulate that the user is not logged in
+    authService.isLoggedIn.and.returnValue(false); 
     const result = guard.canActivate();
-    expect(result).toBeFalse(); // The guard should prevent activation
-    expect(router.navigate).toHaveBeenCalledWith(['/login']); // Check if the router navigated to the login page
+    expect(result).toBeFalse(); 
+    expect(router.navigate).toHaveBeenCalledWith(['/login']); 
   });
 });

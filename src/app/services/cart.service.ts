@@ -5,8 +5,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private cartSubject = new BehaviorSubject<any[]>([]); // Track cart items
-  private totalSubject = new BehaviorSubject<number>(0); // Track total price
+  private cartSubject = new BehaviorSubject<any[]>([]); 
+  private totalSubject = new BehaviorSubject<number>(0); 
+  private cartItemsSubject = new BehaviorSubject<any[]>([]);
+  cartItems$ = this.cartItemsSubject.asObservable();
 
   constructor() {}
 
@@ -16,10 +18,10 @@ export class CartService {
     const currentCart = this.cartSubject.value;
     const existingProductIndex = currentCart.findIndex(item => item._id === product._id);
     if (existingProductIndex > -1) {
-      // Product exists, update quantity
+
       const existingProduct = currentCart[existingProductIndex];
       existingProduct.quantity += product.quantity || 1;
-      currentCart[existingProductIndex] = existingProduct; // Update cart item
+      currentCart[existingProductIndex] = existingProduct; 
     } else {
       // Product does not exist, add new
       const newProduct = { ...product, quantity: product.quantity || 1 };
@@ -38,12 +40,13 @@ export class CartService {
 
   getTotal(): Observable<number> {
     return this.totalSubject.asObservable();
+
   }
 
   removeFromCart(index: number): void {
     const currentCart = this.cartSubject.value;
     if (index >= 0 && index < currentCart.length) {
-      console.log('Removing product from cart'); // Debugging
+      console.log('Removing product from cart'); 
       currentCart.splice(index, 1);
       this.cartSubject.next([...currentCart]);
       this.updateTotal();
@@ -64,9 +67,15 @@ export class CartService {
     }
   }
 
+  clearCart() {
+    this.cartSubject.next([]); // Clears the cart
+    this.totalSubject.next(0); // Reset total to 0
+  }
+  
+
   private updateTotal(): void {
     const total = this.cartSubject.value.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
-    console.log('Updated total price:', total); // Debugging
+    console.log('Updated total price:', total);
     this.totalSubject.next(total);
   }
 }

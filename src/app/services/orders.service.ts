@@ -15,7 +15,7 @@ export class OrderService {
   }
 
   getUserOrders(email: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/user/${email}`); // Adjust this URL as needed
+    return this.http.get<any>(`${this.apiUrl}/user/${email}`); 
   }
   
   getAllOrders(): Observable<any> {

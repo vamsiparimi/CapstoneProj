@@ -8,7 +8,7 @@ describe('ProductService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // Use HttpClientTestingModule for mocking HTTP requests
+      imports: [HttpClientTestingModule], 
       providers: [ProductService],
     });
     service = TestBed.inject(ProductService);
@@ -16,7 +16,7 @@ describe('ProductService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Ensure that no unmatched requests remain
+    httpMock.verify(); 
   });
 
   it('should be created', () => {
@@ -36,7 +36,7 @@ describe('ProductService', () => {
 
     const req = httpMock.expectOne('http://localhost:5000/api/products');
     expect(req.request.method).toBe('GET');
-    req.flush(mockProducts); // Simulate the response
+    req.flush(mockProducts); 
   });
 
   it('should create a new product', () => {
@@ -50,7 +50,7 @@ describe('ProductService', () => {
     const req = httpMock.expectOne('http://localhost:5000/api/products');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(newProduct);
-    req.flush(mockResponse); // Simulate the response
+    req.flush(mockResponse); 
   });
 
   it('should handle error when deleting a product', () => {
@@ -61,6 +61,6 @@ describe('ProductService', () => {
 
     const req = httpMock.expectOne('http://localhost:5000/api/products/1');
     expect(req.request.method).toBe('DELETE');
-    req.flush('Product not found', { status: 404, statusText: 'Not Found' }); // Simulate an error response
+    req.flush('Product not found', { status: 404, statusText: 'Not Found' }); 
   });
 });

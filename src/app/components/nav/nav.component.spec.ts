@@ -13,11 +13,9 @@ describe('NavComponent', () => {
   let mockCartService: jasmine.SpyObj<CartService>;
 
   beforeEach(async () => {
-    // Create mock services
     mockAuthService = jasmine.createSpyObj('AuthService', ['isLoggedIn$', 'isAdmin$']);
     mockCartService = jasmine.createSpyObj('CartService', ['getCartItems']);
 
-    // Configure the spy methods to return observables
     mockAuthService.isLoggedIn$ = of(true);
     mockAuthService.isAdmin$ = of(true);
     mockCartService.getCartItems.and.returnValue(of([{ _id: '1' }, { _id: '2' }]));
@@ -53,20 +51,20 @@ describe('NavComponent', () => {
   });
 
   it('should close the menu', () => {
-    component.isMenuOpen = true; // Simulate menu being open
+    component.isMenuOpen = true; 
     component.closeMenu();
     expect(component.isMenuOpen).toBeFalse();
   });
 
   it('should update cart item count', () => {
-    component.ngOnInit(); // Trigger ngOnInit to subscribe to observables
+    component.ngOnInit(); 
     fixture.detectChanges(); // Detect changes to update the view
 
-    expect(component.cartItemCount).toBe(2); // Since we provided 2 mock items
+    expect(component.cartItemCount).toBe(2); 
   });
 
   it('should update authentication status', () => {
-    component.ngOnInit(); // Trigger ngOnInit to subscribe to observables
+    component.ngOnInit(); 
     fixture.detectChanges(); // Detect changes to update the view
 
     expect(component.isLoggedIn).toBeTrue();

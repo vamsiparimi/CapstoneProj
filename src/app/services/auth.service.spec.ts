@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'; // Use HttpClientTestingModule for testing HTTP requests
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'; 
 import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,7 +9,7 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // Use HttpClientTestingModule for mock HTTP requests
+      imports: [HttpClientTestingModule], 
       providers: [AuthService]
     });
     service = TestBed.inject(AuthService);
@@ -17,7 +17,7 @@ describe('AuthService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Ensure no outstanding requests remain after each test
+    httpMock.verify(); 
   });
 
   it('should be created', () => {

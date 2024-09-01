@@ -71,13 +71,12 @@ export class PaymentComponent implements OnInit {
   applyCoupon(): void {
     const coupon = this.paymentForm.get('coupon')?.value;
     console.log('Applying Coupon:', coupon);
-    // Implement coupon application logic here
   }
 
   submitPayment(): void {
     if (this.paymentForm.valid) {
       const paymentDetails = this.paymentForm.value;
-
+  
       this.cartItems$.subscribe(cartItems => {
         const orderDetails = {
           products: cartItems,
@@ -90,18 +89,18 @@ export class PaymentComponent implements OnInit {
           dateOfOrder: new Date(),
           paymentMethod: paymentDetails.paymentMethod
         };
-
+  
         this.orderService.saveOrder(orderDetails).subscribe(
           response => {
             console.log('Order saved successfully:', response);
+            this.cartService.clearCart(); // Clear the cart
             this.showAlert = true;
             setTimeout(() => {
               this.router.navigate(['/products']);
-            }, 10000); // Delay to allow alert to be seen
+            }, 10000); 
           },
           error => {
             console.error('Error saving order:', error);
-            // Handle error
           }
         );
       });
@@ -109,6 +108,8 @@ export class PaymentComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+  
+  
 
   hideAlert(): void {
     this.showAlert = false;

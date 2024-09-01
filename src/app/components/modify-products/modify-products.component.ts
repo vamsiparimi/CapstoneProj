@@ -27,13 +27,13 @@ export class ModifyProductsComponent implements OnInit {
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       category: ['', Validators.required],
-      image: [''] // Include image field
+      image: [''] 
     });
   }
 
   ngOnInit(): void {
     this.loadProducts().subscribe(products => {
-      this.products = products; // Ensure products are updated
+      this.products = products; 
     });
   }
 
@@ -41,7 +41,7 @@ export class ModifyProductsComponent implements OnInit {
     return this.productService.getAllProducts().pipe(
       catchError(error => {
         console.error('Error loading products:', error);
-        return of([]); // Return empty array on error
+        return of([]); 
       })
     );
   }
@@ -53,11 +53,11 @@ export class ModifyProductsComponent implements OnInit {
         if (confirm('Are you sure you want to update this product?')) {
           this.productService.updateProduct(this.currentProductId, formValue).pipe(
             switchMap(() => this.showAlertMessage('Product updated successfully', 'success')),
-            switchMap(() => this.loadProducts()), // Reload products after update
+            switchMap(() => this.loadProducts()),
             catchError(error => this.showAlertMessage('Error updating product', 'error'))
           ).subscribe(products => {
-            this.products = products; // Update products
-            this.productForm.reset(); // Reset form after successful update
+            this.products = products; 
+            this.productForm.reset(); 
             this.isUpdating = false;
             this.currentProductId = null;
           });
@@ -66,11 +66,11 @@ export class ModifyProductsComponent implements OnInit {
         if (confirm('Are you sure you want to add this product?')) {
           this.productService.createProduct(formValue).pipe(
             switchMap(() => this.showAlertMessage('Product added successfully', 'success')),
-            switchMap(() => this.loadProducts()), // Reload products after adding
+            switchMap(() => this.loadProducts()), 
             catchError(error => this.showAlertMessage('Error adding product', 'error'))
           ).subscribe(products => {
-            this.products = products; // Update products
-            this.productForm.reset(); // Reset form after successful addition
+            this.products = products;
+            this.productForm.reset();
           });
         }
       }
@@ -85,7 +85,7 @@ export class ModifyProductsComponent implements OnInit {
       description: product.description,
       price: product.price,
       category: product.category,
-      image: product.image || '' // Handle undefined
+      image: product.image || '' 
     });
   }
 
@@ -94,10 +94,10 @@ export class ModifyProductsComponent implements OnInit {
       if (confirm('Are you sure you want to delete this product?')) {
         this.productService.deleteProduct(id).pipe(
           switchMap(() => this.showAlertMessage('Product deleted successfully', 'success')),
-          switchMap(() => this.loadProducts()), // Reload products after deletion
+          switchMap(() => this.loadProducts()), 
           catchError(error => this.showAlertMessage('Error deleting product', 'error'))
         ).subscribe(products => {
-          this.products = products; // Update products
+          this.products = products; 
         });
       }
     } else {
@@ -109,7 +109,7 @@ export class ModifyProductsComponent implements OnInit {
     this.alertMessage = message;
     this.alertType = type;
     this.showAlert = true;
-    setTimeout(() => this.showAlert = false, 3000); // Hide alert after 3 seconds
+    setTimeout(() => this.showAlert = false, 3000);
     return of(null);
   }
 }

@@ -9,10 +9,10 @@ describe('PaymentComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientModule, // Add HttpClientModule here
+        HttpClientModule, 
         PaymentComponent
       ],
-      providers: [] // Add any additional providers if necessary
+      providers: [] 
     })
     .compileComponents();
 

@@ -6,7 +6,7 @@
 }
 
 .payment-container {
-    width: 90%; /* Adjust as needed */
+    width: 90%; 
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
@@ -70,11 +70,11 @@
     border-radius: 4px;
     transition: max-height 0.3s ease, padding 0.3s ease;
     overflow: hidden;
-    max-height: 60px; /* Adjust this as needed */
+    max-height: 60px; 
 }
 
 .payment-option-box.expanded {
-    max-height: 500px; /* Increase this to a value that fits your content */
+    max-height: 500px; 
     padding-bottom: 20px;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .cart-summary-container {
-    width: 35%; /* Adjust as needed */
+    width: 35%;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -132,7 +132,7 @@
 .cart-item {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* This ensures the price is at the right end */
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
@@ -142,7 +142,7 @@
   }
 
 .item-image {
-    width: 25px; /* Adjust image size as needed */
+    width: 25px;
     height: auto;
     margin-right: 10px;
 }
@@ -151,11 +151,11 @@
     position: absolute;
     top: -10px;
     right: -5px;
-    background-color: #777; /* Background color of the badge */
-    color: white; /* Text color */
+    background-color: #777; 
+    color: white; 
     border-radius: 50%;
-    padding: 2px 6px; /* Adjust size and padding */
-    font-size: 12px; /* Adjust font size as needed */
+    padding: 2px 6px; 
+    font-size: 12px; 
     font-weight: bold;
     text-align: center;
   }
@@ -163,18 +163,18 @@
 .item-info {
     flex: 1;
     display: flex;
-    justify-content: space-between; /* Space out the name and price */
-    align-items: center; /* Center-align the name and price vertically */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .item-name {
     flex: 1;
-    margin-right: 10px; /* Add some space between name and price */
+    margin-right: 10px; 
 }
 
 .item-price {
-    text-align: right; /* Align the price to the right */
-    white-space: nowrap; /* Prevent the price from wrapping to a new line */
+    text-align: right; 
+    white-space: nowrap; 
 }
 
 
@@ -221,7 +221,7 @@
   }
   
   .alert-box {
-    background-color: black; /* Green background */
+    background-color: black;
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -249,7 +249,7 @@
     cursor: pointer;
   }
   
-/* Base styles for mobile and smaller screens */
+/*for mobile and smaller screens */
 @media (max-width: 768px) {
   .page-container {
     flex-direction: column;
@@ -260,13 +260,13 @@
   .payment-container {
     width: 100%;
     padding: 15px;
-    margin-top: 20px; /* Space between cart summary and payment container */
+    margin-top: 20px;
   }
 
   .cart-summary-container {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 20px; /* Space between cart summary and payment container */
+    margin-bottom: 20px;
   }
 
   .form-row {
@@ -278,15 +278,15 @@
   }
 
   .payment-option-box {
-    max-height: 200px; /* Adjust for mobile view */
+    max-height: 200px; 
   }
 
   .payment-option-box.expanded {
-    max-height: 1000px; /* Increase this value if needed */
+    max-height: 1000px; 
   }
 
   .item-image {
-    width: 20px; /* Adjust image size for smaller screens */
+    width: 20px; 
   }
 
   .item-info {
@@ -303,40 +303,3 @@
     text-align: left;
   }
 }
-
-  
-  /* Styles for tablets and larger screens */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .page-container {
-      flex-direction: row;
-    }
-  
-    .payment-container {
-      width: 70%;
-    }
-  
-    .cart-summary-container {
-      width: 30%;
-    }
-  
-    .form-row {
-      flex-direction: row;
-    }
-  
-    .half-width {
-      width: 48%;
-    }
-  
-    .payment-option-box {
-      max-height: 300px; /* Adjust for tablet view */
-    }
-  
-    .payment-option-box.expanded {
-      max-height: 600px; /* Increase this value if needed */
-    }
-  
-    .item-image {
-      width: 25px; /* Adjust image size for tablets */
-    }
-  }
-  

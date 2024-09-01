@@ -19,6 +19,6 @@ export const routes: Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'login', component: RegisterComponent },
   { path: 'aboutus', component: AboutusComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
-  { path: '**', redirectTo: '/home' } // Wildcard route
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' } 
 ];

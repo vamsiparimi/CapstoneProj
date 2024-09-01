@@ -22,17 +22,14 @@ router.post('/register', async (req, res) => {
 
         const newUser = new User({ username, email, password });
 
-        // Hash password before saving in database
         const salt = await bcrypt.genSalt(10);
         newUser.password = await bcrypt.hash(password, salt);
 
-        // Save user to database
         const savedUser = await newUser.save();
 
-        // Create and assign a token
         jwt.sign(
             { id: savedUser.id },
-            process.env.JWT_SECRET || 'secretKey', // Replace with your secret key in env variables
+            process.env.JWT_SECRET || 'secretKey', 
             { expiresIn: 3600 },
             (err, token) => {
                 if (err) throw err;
@@ -61,22 +58,19 @@ router.post('/login', async (req, res) => {
     }
 
     try {
-        // Check for existing user
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ msg: 'User does not exist' });
         }
 
-        // Validate password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid credentials' });
         }
 
-        // Create and assign a token
         jwt.sign(
             { id: user.id },
-            process.env.JWT_SECRET || 'secretKey', // Replace with your secret key in env variables
+            process.env.JWT_SECRET || 'secretKey',
             { expiresIn: 3600 },
             (err, token) => {
                 if (err) throw err;
@@ -97,7 +91,6 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-    // Perform any necessary cleanup on the server side (if needed)
     res.status(200).json({ msg: 'Logout successful' });
 });
 

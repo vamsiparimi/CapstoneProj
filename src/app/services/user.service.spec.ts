@@ -8,7 +8,7 @@ describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // Use HttpClientTestingModule for mocking HTTP requests
+      imports: [HttpClientTestingModule], 
       providers: [UserService],
     });
     service = TestBed.inject(UserService);
@@ -16,7 +16,7 @@ describe('UserService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Ensure that no unmatched requests remain
+    httpMock.verify(); 
   });
 
   it('should be created', () => {
@@ -36,7 +36,7 @@ describe('UserService', () => {
 
     const req = httpMock.expectOne('/api/orders/history/user1');
     expect(req.request.method).toBe('GET');
-    req.flush(mockOrderHistory); // Simulate the response
+    req.flush(mockOrderHistory); 
   });
 
   it('should retrieve the current order', () => {
@@ -48,7 +48,7 @@ describe('UserService', () => {
 
     const req = httpMock.expectOne('/api/orders/current/user1');
     expect(req.request.method).toBe('GET');
-    req.flush(mockCurrentOrder); // Simulate the response
+    req.flush(mockCurrentOrder); 
   });
 
   it('should handle error when retrieving order history', () => {
@@ -59,6 +59,6 @@ describe('UserService', () => {
 
     const req = httpMock.expectOne('/api/orders/history/user1');
     expect(req.request.method).toBe('GET');
-    req.flush('Error occurred', { status: 500, statusText: 'Server Error' }); // Simulate an error response
+    req.flush('Error occurred', { status: 500, statusText: 'Server Error' }); 
   });
 });

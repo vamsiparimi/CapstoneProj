@@ -6,7 +6,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: #fff;
   font-family: Arial, sans-serif;
-  position: relative; /* Ensures the alert is positioned relative to this container */
+  position: relative; 
 }
 
 .alert {

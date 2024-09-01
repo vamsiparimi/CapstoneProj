@@ -22,10 +22,8 @@ export class HelpComponent {
   onSubmit() {
     if (this.helpForm.valid) {
       console.log('Form Submitted', this.helpForm.value);
-      // Handle form submission, e.g., send to a server or display a success message.
     } else {
       console.log('Form is invalid');
-      // Display an error message or highlight invalid fields.
     }
   }
 }

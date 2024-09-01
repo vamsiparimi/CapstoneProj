@@ -9,10 +9,10 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientModule, // Add HttpClientModule here
+        HttpClientModule, 
         RegisterComponent
       ],
-      providers: [] // You can also provide additional services here if needed
+      providers: [] 
     })
     .compileComponents();
 

@@ -26,8 +26,8 @@ h2 {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  width: 350px; /* Fixed width for the product */
-  height: 100%; /* Fixed height for the product */
+  width: 350px; 
+  height: 100%; 
 }
 
 .product-item:hover {
@@ -36,7 +36,7 @@ h2 {
 
 .product-image {
   width: 90%;
-  height: 90%; /* Fixed height for the image */
+  height: 90%; 
   object-fit: cover;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -62,7 +62,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  margin-top: auto; /* Pushes the button to the bottom */
+  margin-top: auto; 
 }
 
 button:hover {
@@ -71,115 +71,115 @@ button:hover {
 
 .fade-out-alert {
   position: fixed;
-  bottom: 20px; /* Distance from the bottom */
-  right: 20px; /* Distance from the right */
-  background-color: black; /* Dark background for contrast */
+  bottom: 20px; 
+  right: 20px; 
+  background-color: black; 
   color: white;
   text-align: center;
-  padding: 0.5rem 5rem; /* Smaller padding for a compact size */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  transition: opacity 0.5s ease-out, transform 0.3s ease-in-out; /* Smooth transitions */
-  opacity: 1; /* Ensure it's visible initially */
-  max-width: 90%; /* Responsive max width */
-  box-sizing: border-box; /* Ensure padding and borders are included in the width */
+  padding: 0.5rem 5rem; 
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+  transition: opacity 0.5s ease-out, transform 0.3s ease-in-out; 
+  opacity: 1; 
+  max-width: 90%; 
+  box-sizing: border-box; 
 }
 
 .fade-out-alert p {
   margin: 0;
-  font-size: 1rem; /* Readable font size */
+  font-size: 1rem; 
   color: #fff;
 }
 
 .fade-out-alert button {
-  background-color: #444; /* Slightly lighter background for contrast */
+  background-color: #444; 
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 3px; /* Slightly rounded corners */
+  border-radius: 3px; 
   cursor: pointer;
   margin-top: 0.5rem;
-  font-size: 0.9rem; /* Smaller font size */
+  font-size: 0.9rem;
   transition: background-color 0.3s ease-in-out;
 }
 
 .fade-out-alert button:hover {
-  background-color: #555; /* Lighter shade on hover */
+  background-color: #555; 
 }
 
 .fade-out-alert.ng-hide {
   opacity: 0;
-  transform: translateY(20px); /* Slight upward shift when hiding */
+  transform: translateY(20px); 
 }
 
 .filter-container {
-  color: #fff; /* White text for contrast */
-  padding: 5px; /* Padding for consistent spacing */
+  color: #fff; 
+  padding: 5px; 
 }
 
 .filter-container select {
-  background-color: black; /* Slightly lighter black background for the select dropdown */
-  border: 1px solid #333; /* Border color to distinguish the select dropdown */
-  border-radius: 5px; /* Rounded corners for consistency */
-  padding: 5px; /* Padding for the dropdown */
-  width: 10%; /* Full width to fit within the filter container */
+  background-color: black; 
+  border: 1px solid #333; 
+  border-radius: 5px; 
+  padding: 5px; 
+  width: 10%; 
   color: #fff;
 }
 
 
-/* Base styles for mobile and smaller screens */
+/* for mobile and smaller screens */
 @media (max-width: 768px) {
   .products-container {
-    padding: 10px; /* Reduced padding for a more compact container */
+    padding: 10px; 
   }
 
   .products-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Set to 2 columns on mobile */
-    gap: 20px; /* Reduced gap between items */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
   }
 
   .product-item {
-    width: 100%; /* Full width for each product item on mobile */
-    max-width: 100%; /* Prevents items from exceeding the container width */
-    height: auto; /* Height adjusts based on content */
-    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
-    padding: 10px; /* Reduced padding for a more compact look */
+    width: 100%;
+    max-width: 100%; 
+    height: auto; 
+    box-sizing: border-box; 
+    padding: 10px; 
   }
 
   .product-image {
-    width: 70%; /* Ensure image takes full width of the product item */
-    height: auto; /* Height adjusts based on the image aspect ratio */
-    max-height: 150px; /* Set a max height to keep images smaller */
-    object-fit: cover; /* Cover ensures images fill the container without distortion */
+    width: 70%; 
+    height: auto; 
+    max-height: 150px; 
+    object-fit: cover; 
   }
 
   h4, p {
-    font-size: 13px; /* Smaller font size for better fit on mobile screens */
-    margin: 5px 0; /* Reduced margin for a more compact appearance */
+    font-size: 13px; 
+    margin: 5px 0; 
   }
 
   button {
-    padding: 8px 16px; /* Smaller padding for a compact button */
+    padding: 8px 16px; 
   }
 
   .fade-out-alert {
-    bottom: 10px; /* Adjusted distance from the bottom for better visibility on smaller screens */
-    right: 10px; /* Adjusted distance from the right */
-    padding: 0.5rem 1rem; /* Reduced padding for a compact size on mobile */
+    bottom: 10px; 
+    right: 10px;
+    padding: 0.5rem 1rem; 
   }
 
   .filter-container {
-    color: #fff; /* White text for contrast */
-    padding: 5px; /* Padding for consistent spacing */
+    color: #fff; 
+    padding: 5px; 
   }
   
   .filter-container select {
-    background-color: black; /* Slightly lighter black background for the select dropdown */
-    border: 1px solid #333; /* Border color to distinguish the select dropdown */
-    border-radius: 5px; /* Rounded corners for consistency */
-    padding: 7px; /* Padding for the dropdown */
-    width: 23%; /* Full width to fit within the filter container */
+    background-color: black; 
+    border: 1px solid #333; 
+    border-radius: 5px; 
+    padding: 7px; 
+    width: 23%; 
     color: #fff;
   }
 

@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
-import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule
+import { HttpClientModule } from '@angular/common/http'; 
+import { RouterTestingModule } from '@angular/router/testing'; 
 import { AppComponent } from './app.component';
-import { AuthService } from './services/auth.service'; // Adjust the path as needed
+import { AuthService } from './services/auth.service'; 
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientModule, // Include HttpClientModule here
-        RouterTestingModule, // Include RouterTestingModule here
-        AppComponent // Import the standalone AppComponent here
+        HttpClientModule, 
+        RouterTestingModule, 
+        AppComponent 
       ],
       providers: [
-        AuthService // Provide AuthService if used in the component
+        AuthService 
       ]
     }).compileComponents();
   });

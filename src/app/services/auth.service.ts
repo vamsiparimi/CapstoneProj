@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators'; // Ensure to import `tap` from `rxjs/operators`
+import { tap } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class AuthService {
   private adminCredentials = {
     username: 'admin',
     email: 'admin@gmail.com',
-    password: 'adminpass', // Make sure to hash passwords in a real application
+    password: 'adminpass', 
   };
 
   constructor(private http: HttpClient) {}

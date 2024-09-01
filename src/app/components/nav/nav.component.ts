@@ -29,19 +29,19 @@ export class NavComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.authService.isLoggedIn$.subscribe(status => {
         this.isLoggedIn = status;
-        this.cdr.markForCheck(); // Mark for check to update the view
+        this.cdr.markForCheck(); 
       })
     );
     this.subscriptions.add(
       this.authService.isAdmin$.subscribe(status => {
         this.isAdmin = status;
-        this.cdr.markForCheck(); // Mark for check to update the view
+        this.cdr.markForCheck(); 
       })
     );
     this.subscriptions.add(
       this.cartService.getCartItems().subscribe(items => {
         this.cartItemCount = items.length; // Update cart item count
-        this.cdr.markForCheck(); // Mark for check to update the view
+        this.cdr.markForCheck(); 
       })
     );
   }

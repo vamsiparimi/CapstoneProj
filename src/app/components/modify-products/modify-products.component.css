@@ -107,44 +107,44 @@ textarea {
 
 .fade-out-alert {
   position: fixed;
-  bottom: 20px; /* Distance from the bottom */
-  right: 20px; /* Distance from the right */
-  background-color: black; /* Default dark background */
+  bottom: 20px;
+  right: 20px;
+  background-color: black; 
   color: white;
   text-align: center;
-  padding: 0.5rem 1rem; /* Smaller padding for compact size */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  transition: opacity 0.5s ease-out, transform 0.3s ease-in-out; /* Smooth transitions */
-  opacity: 1; /* Ensure it's visible initially */
-  max-width: 90%; /* Responsive max width */
-  box-sizing: border-box; /* Include padding and borders in width */
+  padding: 0.5rem 1rem; 
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+  transition: opacity 0.5s ease-out, transform 0.3s ease-in-out;
+  opacity: 1;
+  max-width: 90%;
+  box-sizing: border-box;
 }
 
 
 
 .fade-out-alert.ng-hide {
   opacity: 0;
-  transform: translateY(20px); /* Slight upward shift when hiding */
+  transform: translateY(20px);
 }
 
 .fade-out-alert p {
   margin: 0;
-  font-size: 1rem; /* Readable font size */
+  font-size: 1rem; 
 }
 
 .fade-out-alert button {
-  background-color: #444; /* Dark button background */
+  background-color: #444;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 3px; /* Slightly rounded corners */
+  border-radius: 3px;
   cursor: pointer;
   margin-top: 0.5rem;
-  font-size: 0.9rem; /* Smaller font size */
+  font-size: 0.9rem;
   transition: background-color 0.3s ease-in-out;
 }
 
 .fade-out-alert button:hover {
-  background-color: #555; /* Lighter shade on hover */
+  background-color: #555; 
 }

@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrderService
   ) {
-    // Initialize the login and register forms
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check if the user is logged in and load user information
+
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.isAdmin = this.authService.isAdmin();
@@ -125,7 +125,7 @@ export class RegisterComponent implements OnInit {
       this.orderService.getAllOrders().subscribe(
         (response: any) => {
           console.log('Fetched all orders:', response);
-          this.orders = response.orders || []; // Ensure orders is an array
+          this.orders = response.orders || []; 
         },
         (error: any) => {
           console.error('Error fetching all orders:', error);
@@ -137,7 +137,7 @@ export class RegisterComponent implements OnInit {
       this.orderService.getUserOrders(userEmail).subscribe(
         (response: any) => {
           console.log('Fetched user orders:', response);
-          this.orders = response.orders || []; // Ensure orders is an array
+          this.orders = response.orders || []; 
         },
         (error: any) => {
           console.error('Error fetching orders:', error);

@@ -4,7 +4,7 @@
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    position: relative; /* Ensure child elements are positioned correctly */
+    position: relative;
   }
   
   .checkout-container h2 {
@@ -92,7 +92,7 @@
   }
   
   .checkout-summary {
-    margin-left: auto; /* Pushes the box to the right within its container */
+    margin-left: auto;
     padding: 20px;
     color: black;
     border-radius: 10px;
@@ -103,8 +103,8 @@
   
   .checkout-summary-container {
     display: flex;
-    justify-content: flex-end; /* Aligns the summary to the right */
-    margin-top: 20px; /* Adds some space above the summary */
+    justify-content: flex-end;
+    margin-top: 20px;
   }
   
   .checkout-summary h3 {
@@ -143,4 +143,117 @@
     color: #777;
   }
   
-  
+ /* Mobile View Styles */
+@media (max-width: 768px) {
+  .checkout-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .checkout-container h2 {
+    font-size: 28px;
+  }
+
+  .cart-list {
+    flex-direction: column;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .item-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .item-info {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+
+  .item-info h4 {
+    font-size: 16px;
+  }
+
+  .item-info p {
+    font-size: 14px;
+  }
+
+  .item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .quantity-controls button {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .quantity-controls span {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+
+  .item-actions button {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .item-actions button:hover {
+    background-color: #d00;
+  }
+
+  .checkout-summary {
+    width: 60%;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .checkout-summary h3 {
+    font-size: 20px;
+  }
+
+  .checkout-summary p {
+    font-size: 12px;
+  }
+
+  .checkout-summary button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .emptyCart {
+    font-size: 18px;
+    padding: 30px 0;
+  }
+}

@@ -8,7 +8,7 @@ describe('OrderService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // Use HttpClientTestingModule for mocking HTTP requests
+      imports: [HttpClientTestingModule], 
       providers: [OrderService],
     });
     service = TestBed.inject(OrderService);
@@ -16,7 +16,7 @@ describe('OrderService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Ensure that no unmatched requests remain
+    httpMock.verify(); 
   });
 
   it('should be created', () => {
@@ -34,7 +34,7 @@ describe('OrderService', () => {
     const req = httpMock.expectOne('http://localhost:5000/api/orders');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(orderDetails);
-    req.flush(mockResponse); // Simulate the response
+    req.flush(mockResponse); 
   });
 
   it('should retrieve orders for a user by email', () => {
@@ -51,7 +51,7 @@ describe('OrderService', () => {
 
     const req = httpMock.expectOne(`http://localhost:5000/api/orders/user/${email}`);
     expect(req.request.method).toBe('GET');
-    req.flush(mockOrders); // Simulate the response
+    req.flush(mockOrders); 
   });
 
   it('should retrieve all orders', () => {
@@ -68,7 +68,7 @@ describe('OrderService', () => {
 
     const req = httpMock.expectOne('http://localhost:5000/api/orders/all');
     expect(req.request.method).toBe('GET');
-    req.flush(mockOrders); // Simulate the response
+    req.flush(mockOrders); 
   });
 
   it('should handle error when saving an order', () => {

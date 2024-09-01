@@ -13,22 +13,22 @@ import { Router } from '@angular/router';
   providers: [CurrencyPipe]
 })
 export class CheckoutComponent implements OnInit {
-  cartItems$: Observable<any[]>; // Use Observable for cart items
-  total$: Observable<number>; // Use Observable for total price
+  cartItems$: Observable<any[]>;
+  total$: Observable<number>;
 
   constructor(
     private cartService: CartService, 
     private currencyPipe: CurrencyPipe,
     private router: Router
   ) {
-    this.cartItems$ = this.cartService.getCartItems(); // Initialize cartItems$ with observable
-    this.total$ = this.cartService.getTotal(); // Initialize total$ with observable
+    this.cartItems$ = this.cartService.getCartItems();
+    this.total$ = this.cartService.getTotal();
   }
 
   ngOnInit(): void {}
 
   removeFromCart(index: number): void {
-      this.cartService.removeFromCart(index); // Call removeFromCart method in CartService
+      this.cartService.removeFromCart(index);
     }
   
 
@@ -38,6 +38,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   updateQuantity(index: number, change: number): void {
-    this.cartService.updateQuantity(index, change); // Call updateQuantity method in CartService
+    this.cartService.updateQuantity(index, change);
   }
 }

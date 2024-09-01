@@ -6,7 +6,7 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Replaces bodyParser.json()
+app.use(express.json()); 
 
 // MongoDB Atlas connection
 const mongoURI = 'mongodb+srv://vamsiasce:dnVJxMU8kzpi2tNi@cluster0.cpdoa.mongodb.net/productManagement?retryWrites=true&w=majority';
