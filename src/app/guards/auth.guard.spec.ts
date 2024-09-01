@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; // Update the path according to your project structure
+import { AuthService } from '../services/auth.service';
+import { of } from 'rxjs'; // Import 'of' to create observable values
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -29,5 +30,16 @@ describe('AuthGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  // Add more tests here to verify the canActivate logic
+  it('should return true if the user is logged in', () => {
+    authService.isLoggedIn.and.returnValue(true); // Simulate that the user is logged in
+    const result = guard.canActivate();
+    expect(result).toBeTrue(); // The guard should allow activation
+  });
+
+  it('should redirect to login if the user is not logged in', () => {
+    authService.isLoggedIn.and.returnValue(false); // Simulate that the user is not logged in
+    const result = guard.canActivate();
+    expect(result).toBeFalse(); // The guard should prevent activation
+    expect(router.navigate).toHaveBeenCalledWith(['/login']); // Check if the router navigated to the login page
+  });
 });
