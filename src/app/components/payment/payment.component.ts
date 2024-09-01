@@ -6,7 +6,7 @@ import { OrderService } from '../../services/orders.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-payment',
@@ -77,40 +77,40 @@ export class PaymentComponent implements OnInit {
     if (this.paymentForm.valid) {
       const paymentDetails = this.paymentForm.value;
   
-      this.cartItems$.subscribe(cartItems => {
-        const orderDetails = {
-          products: cartItems,
-          totalQuantity: cartItems.reduce((sum, item) => sum + item.quantity, 0),
-          totalPrice: paymentDetails.totalPrice,
-          name: `${paymentDetails.firstName} ${paymentDetails.lastName}`,
-          email: this.userEmail,
-          address: `${paymentDetails.address}, ${paymentDetails.city}, ${paymentDetails.state}, ${paymentDetails.pinCode}`,
-          contactNumber: paymentDetails.phone,
-          dateOfOrder: new Date(),
-          paymentMethod: paymentDetails.paymentMethod
-        };
+      this.total$.pipe(first()).subscribe(totalPrice => {
+        this.cartService.getCartItems().pipe(first()).subscribe(cartItems => {
+          const orderDetails = {
+            products: cartItems,
+            totalQuantity: cartItems.reduce((sum, item) => sum + item.quantity, 0),
+            totalPrice: totalPrice,  // Use the resolved value of total$
+            name: `${paymentDetails.firstName} ${paymentDetails.lastName}`,
+            email: this.userEmail,
+            address: `${paymentDetails.address}, ${paymentDetails.city}, ${paymentDetails.state}, ${paymentDetails.pinCode}`,
+            contactNumber: paymentDetails.phone,
+            dateOfOrder: new Date(),
+            paymentMethod: paymentDetails.paymentMethod
+          };
   
-        this.orderService.saveOrder(orderDetails).subscribe(
-          response => {
-            console.log('Order saved successfully:', response);
-            this.cartService.clearCart(); // Clear the cart
-            this.showAlert = true;
-            setTimeout(() => {
-              this.router.navigate(['/products']);
-            }, 10000); 
-          },
-          error => {
-            console.error('Error saving order:', error);
-          }
-        );
+          this.orderService.saveOrder(orderDetails).subscribe(
+            response => {
+              console.log('Order saved successfully:', response);
+              this.cartService.clearCart(); // Clear the cart
+              this.showAlert = true;
+              setTimeout(() => {
+                this.router.navigate(['/products']);
+              }, 5000); // Redirect after 5 seconds
+            },
+            error => {
+              console.error('Error saving order:', error);
+            }
+          );
+        });
       });
     } else {
       console.log('Form is invalid');
     }
   }
   
-  
-
   hideAlert(): void {
     this.showAlert = false;
     this.router.navigate(['/products']);
