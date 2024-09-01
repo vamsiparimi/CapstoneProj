@@ -29,6 +29,7 @@
   <div *ngIf="!isAdmin" class="cart">
     <a routerLink="/checkout" (click)="closeMenu()">
       <img src="assets/images/cart.png" alt="Cart">
+      <span class="badge">{{ cartItemCount }}</span>
     </a>
   </div>
 </nav>
