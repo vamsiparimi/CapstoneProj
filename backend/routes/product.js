@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
             description: req.body.description,
             price: req.body.price,
             category: req.body.category,
-            image: req.body.image // Ensure this is included
+            image: req.body.image 
         });
 
         await product.save();
